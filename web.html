@@ -1,89 +1,214 @@
+<html lang="en">
 
-<html>
-  <head>
-     <script>
-        //function that display value
-        function dis(val)
-        {
-            document.getElementById("result").value+=val
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body {
+            width: 510px;
+            margin: 4% auto;
+            font-family: 'Source Sans Pro', sans-serif;
+            letter-spacing: 5px;
+            font-size: 1.8rem;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
         }
-          
-        //function that evaluates the digit and return result
-        function solve()
-        {
-            let x = document.getElementById("result").value
-            let y = eval(x)
-            document.getElementById("result").value = y
+
+        .calculator {
+            padding: 20px;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-radius: 1px;
         }
-          
-        //function that clear the display
-        function clr()
-        {
-            document.getElementById("result").value = ""
+
+        .input {
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            height: 60px;
+            padding-right: 15px;
+            padding-top: 10px;
+            text-align: right;
+            margin-right: 6px;
+            font-size: 2.5rem;
+            overflow-x: auto;
+            transition: all .2s ease-in-out;
         }
-     </script>
-     <!-- for styling -->
-     <style>
-        .title{
-        margin-bottom: 10px;
-        text-align:center;
-        width: 210px;
-        color:green;
-        border: solid black 2px;
+
+        .input:hover {
+            border: 1px solid #bbb;
+            -webkit-box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
         }
- 
-        input[type="button"]
-        {
-        background-color:green;
-        color: black;
-        border: solid black 2px;
-        width:100%
+
+        .buttons {}
+
+        .operators {}
+
+        .operators div {
+            display: inline-block;
+            border: 1px solid #bbb;
+            border-radius: 1px;
+            width: 80px;
+            text-align: center;
+            padding: 10px;
+            margin: 20px 4px 10px 0;
+            cursor: pointer;
+            background-color: #ddd;
+            transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
         }
- 
-        input[type="text"]
-        {
-        background-color:white;
-        border: solid black 2px;
-        width:100%
+
+        .operators div:hover {
+            background-color: #ddd;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-color: #aaa;
         }
-     </style>
-  </head>
-  <!-- create table -->
-  <body>
-     <div class = title >GeeksforGeeks Calculator</div>
-     <table border="1">
-        <tr>
-           <td colspan="3"><input type="text" id="result"/></td>
-           <!-- clr() function will call clr to clear all value -->
-           <td><input type="button" value="c" onclick="clr()"/> </td>
-        </tr>
-        <tr>
-           <!-- create button and assign value to each button -->
-           <!-- dis("1") will call function dis to display value -->
-           <td><input type="button" value="1" onclick="dis('1')"/> </td>
-           <td><input type="button" value="2" onclick="dis('2')"/> </td>
-           <td><input type="button" value="3" onclick="dis('3')"/> </td>
-           <td><input type="button" value="/" onclick="dis('/')"/> </td>
-        </tr>
-        <tr>
-           <td><input type="button" value="4" onclick="dis('4')"/> </td>
-           <td><input type="button" value="5" onclick="dis('5')"/> </td>
-           <td><input type="button" value="6" onclick="dis('6')"/> </td>
-           <td><input type="button" value="-" onclick="dis('-')"/> </td>
-        </tr>
-        <tr>
-           <td><input type="button" value="7" onclick="dis('7')"/> </td>
-           <td><input type="button" value="8" onclick="dis('8')"/> </td>
-           <td><input type="button" value="9" onclick="dis('9')"/> </td>
-           <td><input type="button" value="+" onclick="dis('+')"/> </td>
-        </tr>
-        <tr>
-           <td><input type="button" value="." onclick="dis('.')"/> </td>
-           <td><input type="button" value="0" onclick="dis('0')"/> </td>
-           <!-- solve function call function solve to evaluate value -->
-           <td><input type="button" value="=" onclick="solve()"/> </td>
-           <td><input type="button" value="*" onclick="dis('*')"/> </td>
-        </tr>
-     </table>
-  </body>
-</html>  
+
+        .operators div:active {
+            font-weight: bold;
+        }
+
+        .leftPanel {
+            display: inline-block;
+        }
+
+        .numbers div {
+            display: inline-block;
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            width: 80px;
+            text-align: center;
+            padding: 10px;
+            margin: 10px 4px 10px 0;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+        }
+
+        .numbers div:hover {
+            background-color: #f1f1f1;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-color: #bbb;
+        }
+
+        .numbers div:active {
+            font-weight: bold;
+        }
+
+        div.equal {
+            display: inline-block;
+            border: 1px solid #3079ED;
+            border-radius: 1px;
+            width: 17%;
+            text-align: center;
+            padding: 122px 10px;
+            margin: 10px 6px 10px 0;
+            vertical-align: top;
+            cursor: pointer;
+            color: #FFF;
+            background-color: #4d90fe;
+            transition: all .2s ease-in-out;
+        }
+
+        div.equal:hover {
+            background-color: #307CF9;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-color: #1857BB;
+        }
+
+        div.equal:active {
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            var num_1 = 0;
+            var operation = "";
+            var num_2 = 0;
+            $("div.numbers div").click(function() {
+                var num = $(this).text();
+                $("#input").append(num)
+            });
+            $("div.operators div").click(function() {
+                if($("#input").text != "") {
+                    num_1 = $("#input").text();
+                    num_1 = parseInt(num_1);
+                    operation = $(this).text();
+                    $("#input").append(operation)
+                }
+            });
+
+            $("#result").click(function() {
+                num_2 = $("#input").text().split("").reverse().join("");
+                num_2 = parseInt(num_2);
+                num_2 = num_2.toString();
+                num_2 = num_2.split("").reverse().join("");
+                num_2 = parseInt(num_2);
+                var answer = "error!";
+                if(operation == "+") {
+                    answer = num_1 + num_2;
+                } else if(operation == "-") {
+                    answer = num_1 - num_2;
+                } else if(operation == "*") {
+                    answer = num_1 * num_2;
+                } else if(operation == "/") {
+                    answer = num_1 / num_2;
+                }
+                $("#input").empty();
+                $("#input").append(answer);
+            });
+
+            $("#clear").click(function() {
+                $("#input").empty()
+            });
+        });
+
+
+    </script>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="input" id="input"></div>
+        <div class="buttons">
+            <div class="operators">
+                <div>+</div>
+                <div>-</div>
+                <div>*</div>
+                <div>/</div>
+            </div>
+            <div class="leftPanel">
+                <div class="numbers">
+                    <div>7</div>
+                    <div>8</div>
+                    <div>9</div>
+                </div>
+                <div class="numbers">
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                </div>
+                <div class="numbers">
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                </div>
+                <div class="numbers">
+                    <div>0</div>
+                    <div>.</div>
+                    <div id="clear">C</div>
+                </div>
+            </div>
+            <div class="equal" id="result">=</div>
+        </div>
+    </div>
+</body>
+
+</html>
