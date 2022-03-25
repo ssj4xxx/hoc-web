@@ -8,16 +8,98 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         body {
-            width: 510px;
+            width: 500px;
             margin: 4% auto;
             font-family: 'Source Sans Pro', sans-serif;
             letter-spacing: 5px;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             -moz-user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
         }
 
+        .calculator {
+            padding: 20px;
+            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+            border-radius: 1px;
+        }
+
+        .input-scr {
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            height: 60px;
+            padding-right: 15px;
+            padding-top: 10px;
+            text-align: right;
+            margin-right: 6px;
+        }
+
+        .operators div {
+            display: inline-block;
+            border: 1px solid #bbb;
+            border-radius: 1px;
+            width: 80px;
+            text-align: center;
+            padding: 10px;
+            margin: 20px 4px 10px 0;
+            cursor: pointer;
+            background-color: #ddd;
+            transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+        }
+
+        .operators div:hover {
+            background-color: #c7c7e0;
+        }
+
+        .operators div:active {
+            font-weight: bold;
+        }
+
+        .leftPanel {
+            display: inline-block;
+        }
+
+        .numbers div {
+            display: inline-block;
+            border: 1px solid #bbb;
+            border-radius: 1px;
+            width: 80px;
+            text-align: center;
+            padding: 10px;
+            margin: 20px 4px 10px 0;
+            cursor: pointer;
+            background-color: #ddd;
+            transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+        }
+
+        .numbers div:hover {
+            background-color: #c7c7e0;
+        }
+
+        .numbers div:active {
+            font-weight: bold;
+        }
+
+        .equal {
+            display: inline-block;
+            border: 1px solid #bbb;
+            border-radius: 1px;
+            width: 80px;
+            text-align: center;
+            padding: 130px 10px;
+            margin: 20px 0px 10px 0;
+            vertical-align: top;
+            background-color: rgb(136, 178, 202);
+            transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+        }
+
+        .equal:hover {
+            background-color: rgb(206, 223, 167);
+        }
+
+        .equal:active {
+            font-weight: bold;
+        }
     </style>
 
     <script>
@@ -62,14 +144,12 @@
                 $("#input").empty()
             });
         });
-
-
     </script>
 </head>
 
 <body>
     <div class="calculator">
-        <div class="input" id="input"></div>
+        <div class="input-scr" id="input-scr"></div>
         <div class="buttons">
             <div class="operators">
                 <div>+</div>
