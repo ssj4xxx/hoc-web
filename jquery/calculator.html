@@ -24,13 +24,15 @@
             border-radius: 1px;
         }
 
-        .input-scr {
+        .input {
             border: 1px solid #ddd;
             border-radius: 1px;
             height: 60px;
             padding-right: 15px;
             padding-top: 10px;
+            font-size: 2.5rem;
             text-align: right;
+            vertical-align: middle;
             margin-right: 6px;
         }
 
@@ -104,52 +106,30 @@
 
     <script>
         $(document).ready(function() {
-            var num_1 = 0;
+            var firstNum = 0;
+            var secondNum = 0;
             var operation = "";
-            var num_2 = 0;
+            
             $("div.numbers div").click(function() {
-                var num = $(this).text();
-                $("#input").append(num)
+                var temp = $(this).text();
+                $("#input").append(temp);
             });
-            $("div.operators div").click(function() {
-                if($("#input").text != "") {
-                    num_1 = $("#input").text();
-                    num_1 = parseInt(num_1);
+
+            $("div.operation div").click(function() {
+                if ($("#input").text != ""){
+                    firstNum = $("#input").text();
+                    firstNum = parseInt(firstNum);
                     operation = $(this).text();
-                    $("#input").append(operation)
+                    $("input")
                 }
-            });
-
-            $("#result").click(function() {
-                num_2 = $("#input").text().split("").reverse().join("");
-                num_2 = parseInt(num_2);
-                num_2 = num_2.toString();
-                num_2 = num_2.split("").reverse().join("");
-                num_2 = parseInt(num_2);
-                var answer = "error!";
-                if(operation == "+") {
-                    answer = num_1 + num_2;
-                } else if(operation == "-") {
-                    answer = num_1 - num_2;
-                } else if(operation == "*") {
-                    answer = num_1 * num_2;
-                } else if(operation == "/") {
-                    answer = num_1 / num_2;
-                }
-                $("#input").empty();
-                $("#input").append(answer);
-            });
-
-            $("#clear").click(function() {
-                $("#input").empty()
-            });
-        });
+            })
+        })
     </script>
 </head>
 
 <body>
     <div class="calculator">
-        <div class="input-scr" id="input-scr"></div>
+        <div class="input" id="input"></div>
         <div class="buttons">
             <div class="operators">
                 <div>+</div>
