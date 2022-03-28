@@ -115,14 +115,38 @@
                 $("#input").append(temp);
             });
 
-            $("div.operation div").click(function() {
+            $("div.operators div").click(function() {
                 if ($("#input").text != ""){
                     firstNum = $("#input").text();
                     firstNum = parseInt(firstNum);
                     operation = $(this).text();
-                    $("input")
+                    $("#input").append(operation);
                 }
             })
+
+            $("#result").click(function() {
+                secondNum = $("#input").text().split("").reverse().join("");
+                secondNum = parseInt(secondNum);
+                secondNum = secondNum.toString();
+                secondNum = secondNum.split("").reverse().join("");
+                secondNum = parseInt(secondNum);
+                var answer = "error!";
+                if(operation == "+") {
+                    answer = firstNum + secondNum;
+                } else if(operation == "-") {
+                    answer = firstNum - secondNum;
+                } else if(operation == "*") {
+                    answer = firstNum * secondNum;
+                } else if(operation == "/") {
+                    answer = firstNum / secondNum;
+                }
+                $("#input").empty();
+                $("#input").append(answer);
+            })
+
+            $("#clear").click(function() {
+                $("#input").empty()
+            });
         })
     </script>
 </head>
