@@ -15,10 +15,11 @@
         var productFav = " 110 ";
         var createdDate = " 05-03-2021 ";
         var addedInfo = document.createElement("div");
+        addedInfo.style.color = "red";
         addedInfo.innerHTML = productView + productFav + createdDate;
 
         $(document).ready(function () {
-            $(".wt-text-title-01").before(addedInfo);
+            $("p.wt-text-title-01").before(addedInfo);
         });
     </script>
 </head>
