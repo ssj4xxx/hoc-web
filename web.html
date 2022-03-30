@@ -3,14 +3,24 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-  $("p").click(function(){
-    $("p").hide();
-  });
-  $(".btn2").click(function(){
-    $("p").show();
-  });
-});
+// $(document).ready(function(){
+//   $("p").click(function(){
+//     $("p").hide();
+//   });
+//   $(".btn2").click(function(){
+//     $("p").show();
+//   });
+// });
+
+var productView = " 100 ";
+        var productFav = " 110 ";
+        var createdDate = " 05-03-2021 ";
+        var addedInfo = document.createElement("div");
+        addedInfo.innerHTML = productView + productFav + createdDate;
+
+        $(document).ready(function () {
+            $(".wt-text-title-01").before(addedInfo);
+        });
 </script>
 </head>
 <body>
