@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("p").click(function(){
+    $("p").hide();
+  });
+  $(".btn2").click(function(){
+    $("p").show();
+  });
+});
+</script>
+</head>
 <body>
 
-<h1>The Console Object</h1>
-<h2>The log() Method</h2>
-<p>Remember to open the console (Press F12) before you click "Run".</p>
+<p>This is a paragraph.</p>
 
-<p>How to display an object in the console.</p>
-
-<script>
-const myObj = {firsname:"John", lastname:"Doe"};
-console.log(myObj);
-</script>
+<button class="btn1">Hide</button>
+<button class="btn2">Show</button>
 
 </body>
 </html>
