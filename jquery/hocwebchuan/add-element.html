@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Add Element</title>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script>
+  $(function(){
+      $('button').click(function() {
+          $('.box:last').after($('.box:first').clone());
+      });
+  });
+</script>
+</head>
+
+<body>
+<div class="box">
+  <h3>Box title</h3>
+  <ul class="list">
+    <li>item 01</li>
+    <li>item 02</li>
+    <li>item 03</li>
+    <li>item 04</li>
+    <li>item 05</li>
+    <li>item 06</li>
+    <li>item 07</li>
+  </ul>
+</div>
+<button type="button">Add</button>
+</body>
+</html>

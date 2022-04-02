@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Compare From Input</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(function () {
+            $('input').change(function () {
+                var a = $('#nameA').val();
+                var b = $('#nameB').val();
+
+                if (a > b) {
+                    $('#result').text(a);
+                } else {
+                    $('#result').text(b);
+                }
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <input type="text" id="nameA" value="0"> <input type="text" id="nameB" value="0">
+    <div>Max: <span id="result"></span></div>
+</body>
+
+</html>
