@@ -1,37 +1,24 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <title>Học web chuẩn</title>
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
   <script>
-    // $(document).ready(function(){
-    //   $("p").click(function(){
-    //     $("p").hide();
-    //   });
-    //   $(".btn2").click(function(){
-    //     $("p").show();
-    //   });
-    // });
-
-    var productView = " 100 ";
-    var productFav = " 110 ";
-    var createdDate = " 05-03-2021 ";
-    var addedInfo = document.createElement("div");
-    addedInfo.innerHTML = productView + productFav + createdDate;
-
-    $(document).ready(function () {
-      $(".wt-text-title-01").before(addedInfo);
+    $(function () {
+      var a = 5;
+      var b = 65;
+      var result = $('.result');
+      if (a > b) {
+        $('.result').text(a);
+      } else $('.result').text(b);
     });
   </script>
 </head>
 
 <body>
-
-  <p>This is a paragraph.</p>
-
-  <button class="btn1">Hide</button>
-  <button class="btn2">Show</button>
-
+  <div class="result"></div>
 </body>
 
 </html>
