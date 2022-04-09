@@ -3,6 +3,28 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            data: {
+                param_1: 'value_1',
+                param_2: 'value_2',
+            },
+            url: 'link_link_link_link_link_link',
+            success: function (res) {
+
+                if (res.error === 0) {
+                    //làm gì nếu đúng
+                } else {
+                    //làm gì nếu sai
+                }
+            },
+            error: function () {
+                console.error('có lỗi xảy ra...');
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -11,8 +33,8 @@
         function onButtonClick() {
 
             console.log("Time now is " + new Date());
-            
-            document.getElementById("test").src = "https://zoro.to/images/zoro.png" 
+
+            document.getElementById("test").src = "https://zoro.to/images/zoro.png"
 
         }
     </script>
