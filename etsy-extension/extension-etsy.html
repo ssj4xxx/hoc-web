@@ -10,12 +10,28 @@
     <script id="jquery" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
 
     <script>
+
+        // New //////////////////////////////////////////////////////////////////
+        $("p.wt-text-title-01").each(function () {
+            var productView = '<i class="fa fa-eye"></i>' + Math.random() + ' ';
+            var productFav = '<i class="fas fa-heart"></i>' + '110 ';
+            var createdDate = '<i class="fas fa-birhtday-cake"></i>' + ' 05-03-2021 ';
+            var addedInfo = document.createElement("div");
+
+            addedInfo.innerHTML = productView + productFav + createdDate;
+            addedInfo.style = "color: red; display: inline-block; min-width: 300px";
+            $(this).before(addedInfo);
+        });
+
+
+
+        // Old ///////////////////////////////////////////////////////////////////////
         var productView = '<i class="fa fa-eye"></i>' + Math.random();
         var productFav = '<i class="fas fa-heart"></i>' + ' 110 ';
         var createdDate = '<i class="fas fa-birhtday-cake"></i>' + ' 05-03-2021 ';
         var addedInfo = document.createElement("div");
 
-        addedInfo.style = "color: red; display: inline-block; min-width: 250px"
+        addedInfo.style = "color: red; display: inline-block; min-width: 250px";
 
         addedInfo.innerHTML = productView + productFav + createdDate;
 
@@ -23,19 +39,8 @@
             $("p.wt-text-title-01").before(addedInfo);
         });
 
-        // New Method
-        var productView = '<i class="fa fa-eye"></i>' + ' 100 ';
-        var productFav = '<i class="fas fa-heart"></i>' + ' 110 ';
-        var createdDate = '<i class="fas fa-birhtday-cake"></i>' + ' 05-03-2021 ';
-        var addedInfo = document.createElement("div");
 
-        addedInfo.style = "color: red; display: inline-block; min-width: 250px"
 
-        addedInfo.innerHTML = productView + productFav + createdDate;
-
-        $("p.wt-text-title-01").each(function() {
-            $(this).before(addedInfo);
-        });
     </script>
 </head>
 
