@@ -13,6 +13,58 @@
 
         // New //////////////////////////////////////////////////////////////////
 
+        $('.search-listings-group').ready(function () {
+
+            var productList = {};
+
+            for (let count = 1; count < $('.search-listings-group .v2-listing-card').length; count++) {
+
+
+                let listing_id = $('.tab-reorder-container li:nth-child(count)').find($('.v2-listing-card')).attr('data-listing-id'); //Lấy listing ID
+            
+
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://example/functions.php',
+                    data: { get_param: 'value' },
+                    success: function (data) {
+                        var names = data
+                        $('#cand').html(data);
+                    }
+                });
+
+                let response =
+                {
+                    "count": 1,
+                    "results": [
+                        {
+                            "listing_id": 1008910455,
+                            "state": "active",
+                            "title": "Disney Characters Fleece Blanket Quilt, Disney Bedding Decor, Disney Gift for Kids Mom Dad, Throw Blanket for Couch Sofa",
+                            "creation_tsz": 1648047387,
+                            "ending_tsz": 1658588187,
+                            "original_creation_tsz": 1619496891,
+                            "last_modified_tsz": 1648047387,
+                            "views": 698,
+                            "num_favorers": 73,
+                        }
+                    ]
+                };
+
+                let productView = ' ' + '<i class="fa fa-eye"></i>' + response.results[0].views + ' ';
+                let productFav = '<i class="fas fa-heart"></i>' + response.results[0].num_favorers + ' ';
+                let createdDate = '<i class="fas fa-birhtday-cake"></i>' + new Date(response.results[0].original_creation_tsz * 1000).toLocaleDateString("vi-VN");
+                let addedInfo = document.createElement("div");
+                addedInfo.innerHTML = productView + productFav + createdDate;
+                addedInfo.style = "color: red; display: inline-block; min-width: 300px";
+                $(this).find('p.wt-text-title-01').before(addedInfo);
+            };
+            });
+
+
+
+
+
         $(document).ready(function () {
             $.ajax({
                 type: 'GET',
@@ -25,9 +77,26 @@
             });
         });
 
-        $('.listing-link').each(function () {
-            let listing_id = 1008910455 //$(this).attr('data-listing-id');
-            var response = 
+
+
+
+
+
+        $('.search-listings-group .v2-listing-card').each(function () {
+            let listing_id = $(this).attr('data-listing-id'); //Lấy listing ID
+
+
+            // $.ajax({
+            //     type: 'GET',
+            //     url: 'http://example/functions.php',
+            //     data: { get_param: 'value' },
+            //     success: function (data) {
+            //         var names = data
+            //         $('#cand').html(data);
+            //     }
+            // });
+
+            var response =
             {
                 "count": 1,
                 "results": [
@@ -44,17 +113,14 @@
                     }
                 ]
             }
-
-            let listingID = response.results[0].listing_id;
             let productView = ' ' + '<i class="fa fa-eye"></i>' + response.results[0].views + ' ';
             let productFav = '<i class="fas fa-heart"></i>' + response.results[0].num_favorers + ' ';
-            let createdDate = '<i class="fas fa-birhtday-cake"></i>' + new Date(response.results[0].original_creation_tsz*1000).toLocaleDateString("vi-VN");
+            let createdDate = '<i class="fas fa-birhtday-cake"></i>' + new Date(response.results[0].original_creation_tsz * 1000).toLocaleDateString("vi-VN");
             let addedInfo = document.createElement("div");
             addedInfo.innerHTML = productView + productFav + createdDate;
             addedInfo.style = "color: red; display: inline-block; min-width: 300px";
             $(this).find('p.wt-text-title-01').before(addedInfo);
         });
-
 
         var response = {
             "count": 1,
@@ -133,7 +199,7 @@
 
 
 
-        $("p.wt-text-title-01").each(function () {
+        $(".search-listings-group p.wt-text-title-01").each(function () {
             var productView = '<i class="fa fa-eye"></i>' + Math.random() + ' ';
             var productFav = '<i class="fas fa-heart"></i>' + '110 ';
             var createdDate = '<i class="fas fa-birhtday-cake"></i>' + ' 05-03-2021 ';
